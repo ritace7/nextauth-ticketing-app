@@ -1,5 +1,8 @@
 import TicketForm from "@/app/(components)/TicketForm";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 import { Ticket, TicketPageProps } from "@/types";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 const getTicketById = async (id: string) => {
 	try {
@@ -13,12 +16,18 @@ const getTicketById = async (id: string) => {
 
 		return res.json();
 	} catch (error) {
-		console.log(error);
+		throw new Error(error as string);
 	}
 };
 
 let updateTicketData: Ticket;
 const TicketPage = async ({ params }: TicketPageProps) => {
+	const session = await getServerSession(options);
+
+	if (!session) {
+		return redirect("/api/auth/signin");
+	}
+
 	const EDITMODE = params.id === "new" ? false : true;
 
 	if (EDITMODE) {

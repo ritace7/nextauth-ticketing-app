@@ -77,7 +77,7 @@ const TicketForm = ({ ticket }: TicketCardProps) => {
 	return (
 		<div className="flex justify-center">
 			<form
-				className="flex flex-col gap-3 w-1/2"
+				className="flex flex-col gap-3 lg:w-1/2 w-full mx-auto "
 				method="post"
 				onSubmit={handleSubmit}
 			>

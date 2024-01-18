@@ -4,6 +4,7 @@ import Nav from "./(components)/Nav";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import AuthProvider from "./(components)/AuthProvider";
 
 config.autoAddCss = false;
 
@@ -20,12 +21,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<div className="flex flex-col h-screen max-h-screen">
-					<Nav />
-					<div className="flex-grow overflow-y-auto bg-page text-default-text">
-						{children}
+				<AuthProvider>
+					<div className="flex flex-col h-screen max-h-screen">
+						<Nav />
+						<div className="flex-grow overflow-y-auto bg-page text-default-text">
+							{children}
+						</div>
 					</div>
-				</div>
+				</AuthProvider>
 			</body>
 		</html>
 	);

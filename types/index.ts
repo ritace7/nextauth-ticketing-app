@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface TicketPageProps {
 	params: { id: string };
 }
@@ -31,4 +33,12 @@ export interface StatusProps {
 
 export interface DeleteProps {
 	id: string;
+}
+
+export interface Token {
+	role?: string;
+}
+
+export interface AuthProviderProps {
+	children: ReactNode;
 }
